@@ -3,6 +3,7 @@ package org.example.youtubeaisummary.service;
 import org.example.youtubeaisummary.exception.YoutubeErrorCode;
 import org.example.youtubeaisummary.exception.YoutubeExtractionException;
 import org.example.youtubeaisummary.util.VttCleaner;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class SubtitleFetcher {
-    private static final Logger logger = Logger.getLogger(SubtitleFetcher.class.getName());
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(SubtitleFetcher.class);
     private static final String TEMP_DIR = "temp";
 
     /**
@@ -88,7 +89,7 @@ public class SubtitleFetcher {
             int exitCode = process.waitFor();
             logger.info("Exit Code: " + exitCode);
             if (exitCode != 0) {
-                logger.warning("yt-dlp 실행 실패, 종료 코드: " + exitCode);
+                logger.warn("yt-dlp 실행 실패, 종료 코드: " + exitCode);
                 return null;  // 실패 시 null 반환하여 다음 옵션 시도
             }
 
@@ -99,10 +100,10 @@ public class SubtitleFetcher {
                 subtitleFile.delete(); // 파일 삭제
                 return VttCleaner.clean(fileContent);
             }
-            logger.warning("자막 파일이 생성되지 않았습니다: " + filePath);
+            logger.warn("자막 파일이 생성되지 않았습니다: " + filePath);
             return null;
         } catch (Exception e) {
-            logger.severe("yt-dlp 실행 중 오류 발생: " + e.getMessage());
+            logger.error("yt-dlp 실행 중 오류 발생: " + e.getMessage());
             return null;
         }
     }

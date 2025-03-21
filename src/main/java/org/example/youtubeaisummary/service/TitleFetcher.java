@@ -2,31 +2,25 @@ package org.example.youtubeaisummary.service;
 
 import org.example.youtubeaisummary.exception.YoutubeErrorCode;
 import org.example.youtubeaisummary.exception.YoutubeExtractionException;
+import org.example.youtubeaisummary.util.ProcessExecutor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @Component
 public class TitleFetcher {
-    private static final Logger logger = Logger.getLogger(TitleFetcher.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(TitleFetcher.class);
 
     public String fetchTitle(String videoUrl) {
         String[] command = {"yt-dlp", "--get-title", videoUrl};
         try {
-            ProcessBuilder pb = new ProcessBuilder(command);
-            pb.redirectErrorStream(true);
-            Process process = pb.start();
-            // 인코딩은 필요에 따라 "MS949" 또는 "Cp949" 사용 (여기서는 MS949 예시)
-            String title = new BufferedReader(new InputStreamReader(process.getInputStream(), Charset.forName("MS949")))
-                    .lines().collect(Collectors.joining("\n")).trim();
-            int exitCode = process.waitFor();
-            if (exitCode != 0) {
-                throw new YoutubeExtractionException(YoutubeErrorCode.TITLE_EXTRACTION_FAILED, exitCode);
+            ProcessExecutor.ProcessResult result = ProcessExecutor.executeCommand(command);
+            if (result.getExitCode() != 0 || result.getOutput().isEmpty()) {
+                throw new YoutubeExtractionException(YoutubeErrorCode.TITLE_EXTRACTION_FAILED, result.getExitCode());
             }
+            String title = result.getOutput().trim();
+            logger.info("Fetched title: {}", title);
             return title;
         } catch (Exception e) {
             throw new YoutubeExtractionException(YoutubeErrorCode.GENERAL_ERROR, e.getMessage());

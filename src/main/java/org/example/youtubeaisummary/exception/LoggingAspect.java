@@ -17,13 +17,16 @@ public class LoggingAspect {
     @Around("execution(* org.example.youtubeaisummary.service..*(..))")
     public Object logServiceMethods(ProceedingJoinPoint joinPoint) throws Throwable {
         String methodName = joinPoint.getSignature().toShortString();
-        logger.info("Entering " + methodName);
+        long startTime = System.currentTimeMillis();
+        logger.info("Entering {}", methodName);
         try {
             Object result = joinPoint.proceed();
-            logger.info("Exiting " + methodName);
+            long elapsedTime = System.currentTimeMillis() - startTime;
+            logger.info("Exiting {} - executed in {} ms", methodName, elapsedTime);
             return result;
         } catch (Throwable t) {
-            logger.error("Exception in " + methodName, t);
+            long elapsedTime = System.currentTimeMillis() - startTime;
+            logger.error("Exception in {} - executed in {} ms", methodName, elapsedTime, t);
             throw t;
         }
     }

@@ -1,8 +1,8 @@
-package org.example.youtubeaisummary.dto;
+package org.example.youtubeaisummary.dto.youtube;
 
 public class VideoInfo {
-    private String title;
-    private String subtitles;
+    private final String title;
+    private final String subtitles;
 
     public VideoInfo(String title, String subtitles) {
         this.title = title;

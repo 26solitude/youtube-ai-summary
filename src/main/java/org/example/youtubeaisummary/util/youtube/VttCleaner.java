@@ -1,4 +1,4 @@
-package org.example.youtubeaisummary.util;
+package org.example.youtubeaisummary.util.youtube;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;

@@ -1,10 +1,10 @@
-package org.example.youtubeaisummary.service;
+package org.example.youtubeaisummary.service.youtube;
 
-import org.example.youtubeaisummary.exception.YoutubeErrorCode;
-import org.example.youtubeaisummary.exception.YoutubeExtractionException;
-import org.example.youtubeaisummary.util.ProcessExecutor;
-import org.example.youtubeaisummary.util.VttCleaner;
-import org.example.youtubeaisummary.util.YoutubeUtil;
+import org.example.youtubeaisummary.exception.youtube.YoutubeErrorCode;
+import org.example.youtubeaisummary.exception.youtube.YoutubeExtractionException;
+import org.example.youtubeaisummary.util.youtube.ProcessExecutor;
+import org.example.youtubeaisummary.util.youtube.VttCleaner;
+import org.example.youtubeaisummary.util.youtube.YoutubeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

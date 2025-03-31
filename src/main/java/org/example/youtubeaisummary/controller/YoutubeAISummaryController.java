@@ -1,7 +1,7 @@
 package org.example.youtubeaisummary.controller;
 
-import org.example.youtubeaisummary.dto.VideoInfo;
-import org.example.youtubeaisummary.service.YoutubeClient;
+import org.example.youtubeaisummary.dto.youtube.VideoInfo;
+import org.example.youtubeaisummary.service.youtube.YoutubeClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,10 +10,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @RestController
-public class YoutubeController {
+public class YoutubeAISummaryController {
     private final YoutubeClient youtubeClient;
 
-    public YoutubeController(YoutubeClient youtubeClient) {
+    public YoutubeAISummaryController(YoutubeClient youtubeClient) {
         this.youtubeClient = youtubeClient;
     }
 

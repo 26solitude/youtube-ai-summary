@@ -1,6 +1,6 @@
-package org.example.youtubeaisummary.service;
+package org.example.youtubeaisummary.service.youtube;
 
-import org.example.youtubeaisummary.dto.VideoInfo;
+import org.example.youtubeaisummary.dto.youtube.VideoInfo;
 import org.springframework.stereotype.Service;
 
 @Service

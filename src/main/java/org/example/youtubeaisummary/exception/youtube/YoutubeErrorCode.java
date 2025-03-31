@@ -1,7 +1,8 @@
-package org.example.youtubeaisummary.exception;
+package org.example.youtubeaisummary.exception.youtube;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.example.youtubeaisummary.exception.ErrorCode;
 import org.springframework.http.HttpStatus;
 
 @RequiredArgsConstructor

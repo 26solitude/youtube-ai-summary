@@ -1,4 +1,4 @@
-package org.example.youtubeaisummary.service;
+package org.example.youtubeaisummary.service.youtube;
 
 import org.springframework.stereotype.Service;
 

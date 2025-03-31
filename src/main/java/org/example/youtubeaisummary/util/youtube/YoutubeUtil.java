@@ -1,4 +1,4 @@
-package org.example.youtubeaisummary.util;
+package org.example.youtubeaisummary.util.youtube;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,7 +1,7 @@
 package org.example.youtubeaisummary.service.ai;
 
 import org.example.youtubeaisummary.dto.ai.SummaryResult;
-import org.example.youtubeaisummary.dto.youtube.VideoInfo;
+import org.example.youtubeaisummary.dto.youtube.SubtitleDTO;
 import org.example.youtubeaisummary.exception.youtube.YoutubeExtractionException;
 import org.example.youtubeaisummary.util.ai.PromptBuilder;
 import org.springframework.ai.chat.client.ChatClient;
@@ -19,10 +19,10 @@ public class AISummaryService {
         this.promptBuilder = promptBuilder;
     }
 
-    public SummaryResult generateSummary(VideoInfo info) {
+    public SummaryResult generateSummary(SubtitleDTO subtitles) {
         try {
             String systemPrompt = promptBuilder.getSystemPrompt();
-            String userPrompt = promptBuilder.buildUserPrompt(info);
+            String userPrompt = promptBuilder.buildUserPrompt(subtitles);
 
             ChatResponse chatResponse = chatClient.prompt()
                     .system(systemPrompt)
@@ -31,7 +31,7 @@ public class AISummaryService {
                     .chatResponse();
 
             String summarizedText = chatResponse.getResult().getOutput().getText();
-            return new SummaryResult(info.getTitle(), summarizedText);
+            return new SummaryResult(summarizedText);
         } catch (Exception e) {
             throw new YoutubeExtractionException(null, "AI 요약 생성 오류: " + e.getMessage());
         }

@@ -44,6 +44,7 @@ dependencies {
     implementation 'io.github.sangdee:kss-java:2.6.1'
     implementation platform("org.springframework.ai:spring-ai-bom:1.0.0-SNAPSHOT")
     implementation 'org.springframework.ai:spring-ai-openai'
+    implementation 'org.apache.commons:commons-text:1.10.0'
 }
 
 dependencyManagement {

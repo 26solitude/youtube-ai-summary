@@ -3,12 +3,10 @@ package org.example.youtubeaisummary.dto.youtube;
 import lombok.Getter;
 
 @Getter
-public class VideoInfo {
-    private final String title;
+public class SubtitleDTO {
     private final String subtitles;
 
-    public VideoInfo(String title, String subtitles) {
-        this.title = title;
+    public SubtitleDTO(String subtitles) {
         this.subtitles = subtitles;
     }
 }

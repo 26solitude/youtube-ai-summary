@@ -26,7 +26,7 @@ public enum YoutubeErrorCode implements ErrorCode {
     SUBTITLE_FILE_NOT_FOUND(
             HttpStatus.NOT_FOUND, 1003,
             "자막 파일이 생성되지 않았습니다.",
-            "자막 파일 없음: %s 또는 %s"
+            "자막 파일 없음: %s"
     ),
 
     /** 메타데이터(제목·ID) 파싱 중 예외가 발생했을 때 */
